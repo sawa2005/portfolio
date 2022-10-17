@@ -1,0 +1,15 @@
+$header-font: bicyclette, sans-serif;
+$main-font: mundial, sans-serif;
+$bg-color: #101010;
+
+@mixin theme {
+    background-color: $bg-color;
+    color: #fff;
+}
+
+h1 {
+    font-family: $header-font;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 13.4375rem;
+}

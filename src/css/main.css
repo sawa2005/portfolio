@@ -1,0 +1,18 @@
+h1 {
+  font-family: bicyclette, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 13.4375rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: #101010;
+  color: #fff;
+}
