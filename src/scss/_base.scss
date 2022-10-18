@@ -9,7 +9,29 @@ $bg-color: #101010;
 
 h1 {
     font-family: $header-font;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 4.625rem;
+}
+
+.full-h1 {
     font-weight: 800;
     font-style: normal;
-    font-size: 13.4375rem;
+    font-size: 12rem;
+}
+
+p {
+    font-family: $main-font;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.25rem;
+    letter-spacing: 0.125rem;
+}
+
+#date {
+    font-family: $header-font;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.9375rem;
+    letter-spacing: normal;
 }

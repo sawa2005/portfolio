@@ -5,3 +5,45 @@
 body {
     @include theme;
 }
+
+nav {
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 99;
+
+    ul {
+        padding: 0px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 45px;
+
+        li {
+            text-align: center;
+        }
+    }
+}
+
+main > div {
+    position: relative;
+    height: 100vh;
+
+    .full-h1 {
+        position: absolute;
+        top: 50vh;
+        right: 40vw;
+        transform: rotate(-90deg);
+        line-height: 0;
+    }
+}
+
+#welcome p {
+    position: absolute;
+    text-align: right;
+    bottom: 30px;
+    right: 30px;
+    max-width: 600px;
+}
+

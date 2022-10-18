@@ -81,14 +81,14 @@ function browsersyncReload(cb) {
 
 // Watch Task / Ser till att rätt task körs om någon fil ändras
 function watchTask(){
-    watch(files.htmlPath, browsersyncReload);
-    watch([files.sassPath, files.jsPath], browsersyncReload);
     watch(files.htmlPath, copyHTML);
     watch(files.sassPath, sassTask);
     watch(files.tsPath, tsTask);
     watch(files.jsPath, jsTask);
     watch(files.cssPath, cssTask);
     watch(files.imgPath, imgTask);
+    watch(files.htmlPath, browsersyncReload);
+    watch([files.sassPath, files.jsPath], browsersyncReload);
 }
 
 // Exporterar alla tasks
