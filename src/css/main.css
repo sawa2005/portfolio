@@ -9,13 +9,6 @@ h1 {
   font-size: 192px;
 }
 
-h3 {
-  font-family: mundial, sans-serif;
-  font-weight: 200;
-  letter-spacing: 0.125rem;
-  font-size: 1.875rem;
-}
-
 h4 {
   font-family: mundial, sans-serif;
   font-weight: 400;
@@ -31,8 +24,12 @@ p {
 }
 
 a {
+  font-family: mundial, sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.125rem;
   text-decoration: none;
   color: #fff;
+  font-size: 1.25rem;
 }
 
 #date {
@@ -47,6 +44,7 @@ a {
   padding: 0;
   list-style: none;
   text-decoration: none;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -107,11 +105,18 @@ main #contact > div {
   height: 100vh;
   margin-left: auto;
 }
-main #contact .contact-item a {
+main #contact .contact-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+main #contact .contact-item a {
+  font-size: 1.875rem;
+  font-weight: 400;
+}
+main #contact .contact-item svg {
+  margin-top: 9px;
 }
 main #welcome p {
   text-align: right;
@@ -135,4 +140,27 @@ main #welcome p {
   height: auto;
   border-radius: 10px;
   margin: 20px 0px;
+}
+
+a {
+  position: relative;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a::after {
+  border-radius: 1em;
+  border-top: 0.1em solid white;
+  content: "";
+  position: absolute;
+  right: 100%;
+  bottom: 0;
+  left: 0;
+  transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
+}
+
+a:hover::after {
+  right: 0;
 }

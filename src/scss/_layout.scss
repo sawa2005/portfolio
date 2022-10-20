@@ -1,5 +1,6 @@
 * {
     @include reset;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -68,11 +69,20 @@ main {
             margin-left: auto;
         }
 
-        .contact-item a {
+        .contact-item {
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: 10px;
+
+            a {
+                font-size: 1.875rem;
+                font-weight: 400;
+            }
+
+            svg {
+                margin-top: 9px;
+            }
         }
     }
     
