@@ -7,6 +7,9 @@ const experience = document.getElementById('experience-text');
 const education = document.getElementById('education-text');
 const contact = document.getElementById('contact-text');
 
+const navInfo = document.getElementById('nav-info');
+const seeMore = document.getElementById('see-more');
+
 const projectsIcon = document.getElementById('projects-icon');
 const experienceIcon = document.getElementById('experience-icon');
 const educationIcon = document.getElementById('education-icon');
@@ -23,6 +26,16 @@ function updateTime() {
 
 window.addEventListener("scroll", () => {
     var scroll = this.scrollY;
+
+    if (scroll == 0) {
+        navInfo!.style.opacity = "1";
+        seeMore!.style.opacity = "1";
+    }
+
+    if (scroll > 0) {
+        navInfo!.style.opacity = "0";
+        seeMore!.style.opacity = "0";
+    }
 
     if (scroll > 612 && scroll < 1500) {
         this.document.body.style.backgroundColor = "#21103e";
@@ -99,7 +112,16 @@ window.addEventListener("load", () => {
         this.document.body.style.opacity = "1";
     }, 1000)
 
-    setTimeout( () => {
+    if (window.innerWidth > 900) {
+        setTimeout( () => {
+            nav!.style.transform = "translateX(0px)";
+        }, 2000)
+    } else {
         nav!.style.transform = "translateX(0px)";
-    }, 2000)
+    }
+
+    setTimeout( () => {
+        navInfo!.style.opacity = "1";
+        seeMore!.style.opacity = "1";
+    }, 3500)
 });

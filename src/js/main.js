@@ -6,6 +6,8 @@ var projects = document.getElementById('projects-text');
 var experience = document.getElementById('experience-text');
 var education = document.getElementById('education-text');
 var contact = document.getElementById('contact-text');
+var navInfo = document.getElementById('nav-info');
+var seeMore = document.getElementById('see-more');
 var projectsIcon = document.getElementById('projects-icon');
 var experienceIcon = document.getElementById('experience-icon');
 var educationIcon = document.getElementById('education-icon');
@@ -19,6 +21,14 @@ function updateTime() {
 ;
 window.addEventListener("scroll", function () {
     var scroll = _this.scrollY;
+    if (scroll == 0) {
+        navInfo.style.opacity = "1";
+        seeMore.style.opacity = "1";
+    }
+    if (scroll > 0) {
+        navInfo.style.opacity = "0";
+        seeMore.style.opacity = "0";
+    }
     if (scroll > 612 && scroll < 1500) {
         _this.document.body.style.backgroundColor = "#21103e";
         welcome.style.opacity = "15%";
@@ -85,7 +95,16 @@ window.addEventListener("load", function () {
     setTimeout(function () {
         _this.document.body.style.opacity = "1";
     }, 1000);
-    setTimeout(function () {
+    if (window.innerWidth > 900) {
+        setTimeout(function () {
+            nav.style.transform = "translateX(0px)";
+        }, 2000);
+    }
+    else {
         nav.style.transform = "translateX(0px)";
-    }, 2000);
+    }
+    setTimeout(function () {
+        navInfo.style.opacity = "1";
+        seeMore.style.opacity = "1";
+    }, 3500);
 });
