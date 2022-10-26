@@ -1,3 +1,54 @@
+"use strict";
+// Variabler
+var studiesEl = document.getElementById("studies");
+var workEl = document.getElementById("work");
+var websitesEl = document.getElementById("websites");
+// Funktioner
+function getCourses() {
+    // Återställ kurslistan
+    studiesEl.innerHTML = '';
+    fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        data.forEach(function (course) {
+            studiesEl.innerHTML +=
+                "<div class=\"item\">\n                    <h4>".concat(course.startDate, " - ").concat(course.endDate, " | ").concat(course.type, " | ").concat(course.school, "</h4>\n                    <h1>").concat(course.name, "</h1>\n                </div>");
+        });
+    });
+}
+function getJobs() {
+    workEl.innerHTML = '';
+    fetch('https://samuelwarduppgifter.one/restprojekt/work.php')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        data.forEach(function (work) {
+            if (work.endDate == null) {
+                workEl.innerHTML +=
+                    "<div class=\"item\">\n                        <h4>".concat(work.startDate, " - Today | ").concat(work.job, "</h4>\n                        <h1>").concat(work.title, "</h1>\n                    </div>");
+            }
+            else {
+                workEl.innerHTML +=
+                    "<div class=\"item\">\n                        <h4>".concat(work.startDate, " - ").concat(work.endDate, " | ").concat(work.job, "</h4>\n                        <h1>").concat(work.title, "</h1>\n                    </div>");
+            }
+        });
+    });
+}
+function getWebsites() {
+    websitesEl.innerHTML = '';
+    fetch('https://samuelwarduppgifter.one/restprojekt/websites.php')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        data.forEach(function (website) {
+            websitesEl.innerHTML +=
+                "<div class=\"item\">\n                    <h4>".concat(website.year, " | ").concat(website.type, "</h4>\n                    <h1>").concat(website.title, "</h1>\n                    <div class=\"item-info\">\n                        <p>").concat(website.description, "</p>\n                        <br><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.603\" height=\"11.801\" viewBox=\"0 0 23.603 11.801\">\n                            <path id=\"Icon_material-link\" data-name=\"Icon material-link\" d=\"M5.242,16.4A3.662,3.662,0,0,1,8.9,12.742h4.721V10.5H8.9a5.9,5.9,0,0,0,0,11.8h4.721V20.059H8.9A3.662,3.662,0,0,1,5.242,16.4Zm4.839,1.18h9.441v-2.36H10.081ZM20.7,10.5H15.982v2.242H20.7a3.658,3.658,0,0,1,0,7.317H15.982V22.3H20.7a5.9,5.9,0,0,0,0-11.8Z\" transform=\"translate(-3 -10.5)\" fill=\"#fff\"/>\n                        </svg>\n                        <a href=\"").concat(website.link, "\" target=\"_blank\"><i>").concat(website.link, "</i></a>\n                        <img src=\"imgs/").concat(website.image, "\" alt=\"Preview of ").concat(website.title, "\">\n                    </div>\n                </div>");
+        });
+    });
+}
+window.addEventListener('load', function () {
+    getCourses();
+    getJobs();
+    getWebsites();
+});
 var _this = this;
 var time = document.getElementById('date');
 var nav = document.querySelector('nav');
