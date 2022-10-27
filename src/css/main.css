@@ -2,6 +2,7 @@ h1 {
   font-family: bicyclette, sans-serif;
   font-weight: 300;
   font-size: 4.625rem;
+  text-transform: uppercase;
 }
 
 .full-h1 {
@@ -99,6 +100,7 @@ main #experience {
   min-height: 1321px;
 }
 main #education {
+  height: 1238px;
   min-height: 1238px;
 }
 main #contact > div {
@@ -135,6 +137,7 @@ main #welcome p {
 }
 .items .item {
   max-width: 1050px;
+  margin-bottom: 25px;
 }
 .items .item .item-info {
   max-width: 700px;

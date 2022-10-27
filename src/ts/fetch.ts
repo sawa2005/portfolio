@@ -13,6 +13,7 @@ function getCourses() {
     fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
         .then(response => response.json())
         .then(data => {
+            data.sort(sortByDate);
             data.forEach((course: any) => {
                 studiesEl!.innerHTML +=
                 `<div class="item">
@@ -29,6 +30,7 @@ function getJobs() {
     fetch('https://samuelwarduppgifter.one/restprojekt/work.php')
         .then(response => response.json())
         .then(data => {
+            data.sort(sortByDate);
             data.forEach((work: any) => {
                 if (work.endDate == null) {
                     workEl!.innerHTML +=
@@ -53,6 +55,7 @@ function getWebsites() {
     fetch('https://samuelwarduppgifter.one/restprojekt/websites.php')
         .then(response => response.json())
         .then(data => {
+            data.sort(sortByYear);
             data.forEach((website: any) => {
                 websitesEl!.innerHTML +=
                 `<div class="item">
@@ -69,6 +72,14 @@ function getWebsites() {
                 </div>`
             })
         })
+}
+
+function sortByDate(a: any, b: any) {
+    return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+}
+
+function sortByYear(a: any, b: any) {
+    return b.year - a.year;
 }
 
 window.addEventListener('load',() => {    
