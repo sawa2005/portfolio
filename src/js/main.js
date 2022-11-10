@@ -1,15 +1,19 @@
+// Fetch-API kod
 "use strict";
 // Variabler
 var studiesEl = document.getElementById("studies");
 var workEl = document.getElementById("work");
 var websitesEl = document.getElementById("websites");
 // Funktioner
+// Hämta och skriv ut kurser
 function getCourses() {
-    // Återställ kurslistan
+    // Återställ inläggslistan
     studiesEl.innerHTML = '';
+    // Hämta och skriv ut inlägg
     fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
         .then(function (response) { return response.json(); })
         .then(function (data) {
+        // Sorterar inläggen i datumsordning
         data.sort(sortByDate);
         data.forEach(function (course) {
             studiesEl.innerHTML +=
@@ -17,6 +21,7 @@ function getCourses() {
         });
     });
 }
+// Hämta och skriv ut jobb
 function getJobs() {
     workEl.innerHTML = '';
     fetch('https://samuelwarduppgifter.one/restprojekt/work.php')
@@ -24,6 +29,7 @@ function getJobs() {
         .then(function (data) {
         data.sort(sortByDate);
         data.forEach(function (work) {
+            // Ser till att slutdatumet endast skrivs ut om det finns
             if (work.endDate == null) {
                 workEl.innerHTML +=
                     "<div class=\"item\">\n                        <h4>".concat(work.startDate, " - Today | ").concat(work.job, "</h4>\n                        <h1>").concat(work.title, "</h1>\n                    </div>");
@@ -35,6 +41,7 @@ function getJobs() {
         });
     });
 }
+// Hämta och skriv ut webbsidor
 function getWebsites() {
     websitesEl.innerHTML = '';
     fetch('https://samuelwarduppgifter.one/restprojekt/websites.php')
@@ -47,18 +54,45 @@ function getWebsites() {
         });
     });
 }
+// Sorterar en array i datumsordning
 function sortByDate(a, b) {
     return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
 }
+// Sorterar en array i årsordning
 function sortByYear(a, b) {
     return b.year - a.year;
 }
+// Eventlyssnare
 window.addEventListener('load', function () {
     getCourses();
     getJobs();
     getWebsites();
 });
+// Visar webbsidornas info när rubriken klickas
+websitesEl.addEventListener('click', function (e) {
+    var target = e.target;
+    var currentTarget = e.currentTarget;
+    var item = target.parentNode;
+    var items = Array.from(currentTarget.querySelectorAll('.item-info'));
+    var info = item.querySelector('.item-info');
+    if (item.matches('div')) {
+        if (info.style.display == "block") {
+            for (var i = 0; i < items.length; i++) {
+                items[i].style.display = "none";
+            }
+            info.style.display = "none";
+        }
+        else {
+            for (var i = 0; i < items.length; i++) {
+                items[i].style.display = "none";
+            }
+            info.style.display = "block";
+        }
+    }
+});
+// Generell kod och animationer
 var _this = this;
+// Variabler
 var time = document.getElementById('date');
 var nav = document.querySelector('nav');
 var welcome = document.getElementById('welcome-text');
@@ -72,13 +106,16 @@ var projectsIcon = document.getElementById('projects-icon');
 var experienceIcon = document.getElementById('experience-icon');
 var educationIcon = document.getElementById('education-icon');
 var contactIcon = document.getElementById('contact-icon');
+// Uppdaterar tiden när webbsidan laddas om och varje sekund
 updateTime();
 setInterval(function () { updateTime(); }, 1000);
+// Uppdaterar och skriver ut nuvarande tiden
 function updateTime() {
     var date = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric" });
     time.innerText = date;
 }
 ;
+// Animationer under skrollning
 window.addEventListener("scroll", function () {
     var scroll = _this.scrollY;
     if (scroll == 0) {
@@ -150,6 +187,7 @@ window.addEventListener("scroll", function () {
         contactIcon.style.transform = "scale(1)";
     }
 });
+// Animationer när sidan laddats in
 window.addEventListener("load", function () {
     welcome.style.opacity = "100%";
     setTimeout(function () {

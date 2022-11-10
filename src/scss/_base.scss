@@ -1,7 +1,11 @@
+// Tema och typsnitt
+
+// Variabler
 $header-font: bicyclette, sans-serif;
 $main-font: mundial, sans-serif;
 $bg-color: #101010;
 
+// Mixins
 @mixin theme {
     background-color: $bg-color;
     color: #fff;
@@ -13,6 +17,7 @@ $bg-color: #101010;
     letter-spacing: 0.125rem;
 }
 
+// Typsnitt
 h1 {
     font-family: $header-font;
     font-weight: 300;

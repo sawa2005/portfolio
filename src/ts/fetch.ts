@@ -1,3 +1,5 @@
+// Fetch-API kod
+
 "use strict"
 
 // Variabler
@@ -6,13 +8,17 @@ let workEl = document.getElementById("work");
 let websitesEl = document.getElementById("websites");
 
 // Funktioner
+
+// Hämta och skriv ut kurser
 function getCourses() {
-    // Återställ kurslistan
+    // Återställ inläggslistan
     studiesEl!.innerHTML = '';
 
+    // Hämta och skriv ut inlägg
     fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
         .then(response => response.json())
         .then(data => {
+            // Sorterar inläggen i datumsordning
             data.sort(sortByDate);
             data.forEach((course: any) => {
                 studiesEl!.innerHTML +=
@@ -24,6 +30,7 @@ function getCourses() {
         })
 }
 
+// Hämta och skriv ut jobb
 function getJobs() {
     workEl!.innerHTML = '';
 
@@ -32,6 +39,7 @@ function getJobs() {
         .then(data => {
             data.sort(sortByDate);
             data.forEach((work: any) => {
+                // Ser till att slutdatumet endast skrivs ut om det finns
                 if (work.endDate == null) {
                     workEl!.innerHTML +=
                     `<div class="item">
@@ -49,6 +57,7 @@ function getJobs() {
         })
 }
 
+// Hämta och skriv ut webbsidor
 function getWebsites() {
     websitesEl!.innerHTML = '';
 
@@ -74,16 +83,49 @@ function getWebsites() {
         })
 }
 
+// Sorterar en array i datumsordning
 function sortByDate(a: any, b: any) {
     return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
 }
 
+
+// Sorterar en array i årsordning
 function sortByYear(a: any, b: any) {
     return b.year - a.year;
 }
 
+// Eventlyssnare
 window.addEventListener('load',() => {    
     getCourses();
     getJobs();
     getWebsites();
+});
+
+// Visar webbsidornas info när rubriken klickas
+websitesEl!.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const currentTarget = e.currentTarget as HTMLElement;
+    let item = target.parentNode as HTMLElement;
+    let items = Array.from(currentTarget.querySelectorAll('.item-info')) as Array<HTMLElement>;
+    let info = item.querySelector('.item-info') as HTMLDivElement;
+
+    if (item.matches('div')) {
+
+        if (info.style.display == "block") {
+
+            for (let i = 0; i < items.length; i++) {
+                items[i].style.display = "none";
+            }
+
+            info.style.display = "none";
+
+        } else {
+            for (let i = 0; i < items.length; i++) {
+                items[i].style.display = "none";
+            }
+
+            info.style.display = "block";
+        }
+        
+    }
 });

@@ -1,3 +1,4 @@
+// Nödvändiga paket
 const gulp = require("gulp");
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
@@ -8,7 +9,7 @@ var sass = require('gulp-sass')(require('sass'));
 var ts = require('gulp-typescript');
 var browserSync = require('browser-sync').create();
 
-// File directories
+// Filkataloger
 const files = {
     htmlPath: "src/**/*.html",
     cssPath: "src/css/*.css",
@@ -18,7 +19,7 @@ const files = {
     imgPath: "src/imgs/*"
 }
 
-// SASS-task
+// SASS-task / Konverterar SASS-kod till CSS
 function sassTask() {
     return src(files.sassPath)
     .pipe(sass().on('error', sass.logError))

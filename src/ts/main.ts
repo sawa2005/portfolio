@@ -1,3 +1,6 @@
+// Generell kod och animationer
+
+// Variabler
 var time = document.getElementById('date');
 const nav = document.querySelector('nav');
 
@@ -15,15 +18,17 @@ const experienceIcon = document.getElementById('experience-icon');
 const educationIcon = document.getElementById('education-icon');
 const contactIcon = document.getElementById('contact-icon');
 
+// Uppdaterar tiden när webbsidan laddas om och varje sekund
 updateTime();
-
 setInterval( () => {updateTime()}, 1000);
 
+// Uppdaterar och skriver ut nuvarande tiden
 function updateTime() {
     const date = new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric"});
     time!.innerText = date;   
 };
 
+// Animationer under skrollning
 window.addEventListener("scroll", () => {
     var scroll = this.scrollY;
 
@@ -105,6 +110,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
+// Animationer när sidan laddats in
 window.addEventListener("load", () => {
     welcome!.style.opacity = "100%";
 
