@@ -38,3 +38,9 @@ gulp
 
 Samuel Ward | @slw_one
 
+## Acknowledgments
+
+Inspiration
+* [Van Holtz Co](https://vanholtz.co/)
+* [Keita Yamada](https://p5aholic.me/)
+* [The Craftsmen Agency](https://www.thecraftsmen.tech/)
