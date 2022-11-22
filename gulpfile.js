@@ -1,10 +1,9 @@
 // Nödvändiga paket
 const gulp = require("gulp");
+const { src, dest, series, watch, task } = require('gulp');
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
-const babel = require('gulp-babel');
-const { src, dest, series, watch, task } = require('gulp');
 var sass = require('gulp-sass')(require('sass'));
 var ts = require('gulp-typescript');
 var browserSync = require('browser-sync').create();
