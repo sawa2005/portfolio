@@ -28,7 +28,7 @@ function updateTime() {
     time!.innerText = date;   
 };
 
-// Animationer under skrollning
+// Animationer under skrollning (Med jobbsektion)
 window.addEventListener("scroll", () => {
     var scroll = this.scrollY;
 
@@ -131,3 +131,64 @@ window.addEventListener("load", () => {
         seeMore!.style.opacity = "1";
     }, 3500)
 });
+
+/* Animationer under skrollning (Utan jobbsektion)
+window.addEventListener("scroll", () => {
+    var scroll = this.scrollY;
+
+    if (scroll == 0) {
+        navInfo!.style.opacity = "1";
+        seeMore!.style.opacity = "1";
+    }
+
+    if (scroll > 0) {
+        navInfo!.style.opacity = "0";
+        seeMore!.style.opacity = "0";
+    }
+
+    if (scroll > 612 && scroll < 1500) {
+        this.document.body.style.backgroundColor = "#21103e";
+
+        welcome!.style.opacity = "15%";
+        projects!.style.opacity = "100%";
+        education!.style.opacity = "15%";
+        contact!.style.opacity = "15%";
+
+        projectsIcon!.style.transform = "scale(1.25)";
+        educationIcon!.style.transform = "scale(1)";
+        contactIcon!.style.transform = "scale(1)";
+    } else if (scroll > 1500 && scroll < 3064) {
+        this.document.body.style.backgroundColor = "#161c30";
+
+        welcome!.style.opacity = "15%";
+        projects!.style.opacity = "15%";
+        education!.style.opacity = "100%";
+        contact!.style.opacity = "15%";
+
+        projectsIcon!.style.transform = "scale(1)";
+        educationIcon!.style.transform = "scale(1.25)";
+        contactIcon!.style.transform = "scale(1)";
+    } else if (scroll > 3064) {
+        this.document.body.style.backgroundColor = "#6c1d2b";
+
+        welcome!.style.opacity = "15%";
+        projects!.style.opacity = "15%";
+        education!.style.opacity = "15%";
+        contact!.style.opacity = "100%";
+
+        projectsIcon!.style.transform = "scale(1)";
+        educationIcon!.style.transform = "scale(1)";
+        contactIcon!.style.transform = "scale(1.25)";
+    } else {
+        this.document.body.style.backgroundColor = "#101010";
+        
+        welcome!.style.opacity = "100%";
+        projects!.style.opacity = "15%";
+        education!.style.opacity = "15%";
+        contact!.style.opacity = "15%";
+
+        projectsIcon!.style.transform = "scale(1)";
+        educationIcon!.style.transform = "scale(1)";
+        contactIcon!.style.transform = "scale(1)";
+    }
+}); */
