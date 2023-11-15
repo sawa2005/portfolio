@@ -159,6 +159,8 @@ const animateGradient = function() {
 
             else {
                 // Om denna körs är animationen klar och återställs
+                currentPct = 0;
+                elapsed = 0;
                 clearInterval(intervalFrame);
                 intervalFrame = undefined;
             }
@@ -177,20 +179,20 @@ window.addEventListener("scroll", () => {
     scrollPos = this.window.scrollY;
 
     // Kollar skrollriktning och sätter rätt animationsriktning
-    if (oldScroll < scrollPos) {
+    if (oldScroll < scrollPos && currentPct == 0) {
         animationDirection = "forwards";
-    } else {
+    } else if (oldScroll > scrollPos && currentPct == 0) {
         animationDirection = "backwards";
     }
 
     oldScroll = scrollPos;
 
     // Kör animationfunktionen när användaren går mellan två sektioner
-    if (oldSectionNum != sectionNum && animationDirection == "forwards") {
+    if (oldSectionNum != sectionNum && animationDirection == "forwards" && currentPct == 0) {
         currentPct = 0;
         elapsed = 0;
         animateGradient();
-    } else if (oldSectionNum != sectionNum && animationDirection == "backwards") {
+    } else if (oldSectionNum != sectionNum && animationDirection == "backwards" && currentPct == 0) {
         currentPct = 100;
         elapsed = 60;
         animateGradient();
