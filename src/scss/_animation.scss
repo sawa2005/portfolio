@@ -8,12 +8,6 @@ a:hover {
     text-decoration: none;
 }
 
-body {
-    transition: background-color .5s ease,
-                opacity 2.5s ease-out;
-    opacity: 0;
-}
-
 #nav-info, #see-more {
     transition: opacity .5s ease-out;
     opacity: 0;
