@@ -21,9 +21,19 @@ const contactIcon = document.getElementById('contact-icon');
 let body = document.querySelector('body');
 var range: any;
 
-// DEFINE YOUR GRADIENT COLORS HERE
-// Pct refers to the percentage position of the gradient stop point.
+// Variabler för gradientanimation
+let transitionTime = 1000                                       // <-- hur lång animationen ska vara i millisekunder
+let previousTime: any, start = 0;                               // <-- lagrar data under animationen
+let animationDirection = "forwards";                            // <-- lagrar animationens riktning
+let intervalFrame: string | number | NodeJS.Timer | undefined;  // <-- lagrar intervall
+let currentPct = 0;                                             // <-- antalet procent av animationen som har slutförts
+let elapsed = 0;                                                // <-- antalet bildrutor som har passerat 
+let scrollPos: number;                                          // <-- vertikala positionen som har skrollats till
+let oldScroll = 0;                                              // <-- tidigare skrollposition
+let sectionNum = 0;                                             // <-- sektionen som användaren granskar
+let oldSectionNum = 0;                                          // <-- tidigare sektion
 
+// Gradientfärger
 const gradientColorOne = [
     [
         { aPct: 0, pct: 0, color: { r: 53, g: 53, b: 53 } },
@@ -81,13 +91,13 @@ const gradientColorThree = [
     ]
 ]
 
-// Apply our gradient programmatically so we can completely manipulate the gradient from JS rather than CSS
+// Sätter den första gradienten
 let c1 = gradientColorOne[0][0];
 let c2 = gradientColorTwo[0][0];
 let c3 = gradientColorThree[0][0];
 body!.style.background = `radial-gradient(circle, rgba(${c1.color.r},${c1.color.g},${c1.color.b},1) ${c1.pct}%, rgba(${c2.color.r},${c2.color.g},${c2.color.b},1) ${c2.pct}%, rgba(${c3.color.r},${c3.color.g},${c3.color.b},1) ${c3.pct}%)`;
-   
-// This function transitions between two rgb colors
+
+// Funktion som tar fram färgerna mellan två färger
 const getColor = function(aPct: number, colorSet: string | any[]) {
     for (var i = 1; i < colorSet.length - 1; i++) {
         if (aPct < colorSet[i].aPct) {
@@ -95,7 +105,6 @@ const getColor = function(aPct: number, colorSet: string | any[]) {
         }
     }
 
-    // This conversion figures out the transition between two rgb values
     var lower = colorSet[i - 1];
     var upper = colorSet[i];
     var range = upper.aPct - lower.aPct;
@@ -108,51 +117,30 @@ const getColor = function(aPct: number, colorSet: string | any[]) {
         b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper)
     };
 
-    /* console.log("lower: " + lower.color.r + ", " + lower.color.g + ", " + lower.color.b + "\n"
-                 + "upper: " + upper.color.r + ", " + upper.color.g + ", " + upper.color.b + "\n" 
-                 + "range: " + range + "\n" 
-                 + "rangePct: " + rangePct + "\n" 
-                 + "pctLower: " + pctLower + "\n" 
-                 + "pctUpper: " + pctUpper + "\n" 
-                 + "color: " + color.r + ", " + color.g + ", " + color.b
-               );
- */
-    // And returns the rgb code
+    // Returnerar RGB-kod
     return `rgb(${color.r}, ${color.g}, ${color.b})`;
 }
 
-
-let transitionTime = 1000           // <-- 100 ms - time our animation will last
-let previousTime: any, start = 0;        // <-- stores data on animation
-let animationDirection = "forwards"; // <-- stores the animation direction
-let intervalFrame: string | number | NodeJS.Timer | undefined;                  // <-- stores the interval frame
-let currentPct = 0;                 // <-- current percentage through the animation
-let elapsed = 0;                    // <-- number of frames which have ellapsed 
-let scrollPos: number;
-let oldScroll = 0;
-let sectionNum = 0;
-let oldSectionNum = 0;
-
-// This is our animation
+// Funktion för animationen av gradienter
 const animateGradient = function() {
     if(intervalFrame === undefined) {
         intervalFrame = setInterval(() => {
-            let time = transitionTime / 1000; // time in seconds
-            let numberOfFrames = time * 60; // 60 frames per second -> 1 second = 60 frames
+            let time = transitionTime / 1000; // tid i sekunder
+            let numberOfFrames = time * 60; // 60 FPS -> 1 sekund = 60 bildrutor
             let colorOne = "";
             let colorTwo = "";
             let colorThree = "";
 
             console.log("Current percent: " + currentPct);
             
-            // If the animation is going forward
+            // Om animationens riktning är framåt
             if (animationDirection === 'forwards' && currentPct != 100) {
-                // Add 1 to elapsed
+                // Addera elapsed
                 elapsed += 1;
-                // The elapsed frames out of max frames
+                // Antalet bilder utav maximala
                 currentPct = Math.min(elapsed / numberOfFrames, 1) * 100;
 
-                // Calculate current color in this time for each gradient color
+                // Kalkylera vilken färg som borde visas på den nuvarande bildrutan
                 colorOne = getColor(currentPct, gradientColorOne[sectionNum - 1]);
                 colorTwo = getColor(currentPct, gradientColorTwo[sectionNum - 1]);
                 colorThree = getColor(currentPct, gradientColorThree[sectionNum - 1]);
@@ -162,33 +150,33 @@ const animateGradient = function() {
             else if (animationDirection === 'backwards' && currentPct != 0) {
                 // Otherwise we're going back - subtract 1 from ellapsed
                 elapsed -= 1;
-                // The elapsed frames out of max frames
                 currentPct = Math.max(elapsed / numberOfFrames, 0) * 100;
 
-                // Calculate current color in this time for each gradient color
                 colorOne = getColor(currentPct, gradientColorOne[sectionNum]);
                 colorTwo = getColor(currentPct, gradientColorTwo[sectionNum]);
                 colorThree = getColor(currentPct, gradientColorThree[sectionNum]);
             }
 
             else {
+                // Om denna körs är animationen klar och återställs
                 clearInterval(intervalFrame);
                 intervalFrame = undefined;
             }
 
-            // Generate CSS string
+            // Generera CSS sträng
             let generateGradient = `radial-gradient(circle, ${colorOne} 0%, ${colorTwo} 30%, ${colorThree} 100%)`;
 
-            // Add it to our background.
+            // Lägg till den till bakgrunden
             body!.style.backgroundImage = generateGradient;
-        }, 16.667); // 60 frames per second
+        }, 16.667); // 60 FPS
     }
 };
 
+// Körs när webbläsaren skrollas
 window.addEventListener("scroll", () => {
     scrollPos = this.window.scrollY;
-    // console.log("old section: " + oldSectionNum + "\n" + "current section: " + sectionNum)
 
+    // Kollar skrollriktning och sätter rätt animationsriktning
     if (oldScroll < scrollPos) {
         animationDirection = "forwards";
     } else {
@@ -197,6 +185,7 @@ window.addEventListener("scroll", () => {
 
     oldScroll = scrollPos;
 
+    // Kör animationfunktionen när användaren går mellan två sektioner
     if (oldSectionNum != sectionNum && animationDirection == "forwards") {
         currentPct = 0;
         elapsed = 0;
@@ -207,6 +196,7 @@ window.addEventListener("scroll", () => {
         animateGradient();
     }
 
+    // Sektioner & andra animationer
     if (scrollPos == 0) {
         navInfo!.style.opacity = "1";
         seeMore!.style.opacity = "1";
@@ -300,88 +290,6 @@ function updateTime() {
     time!.innerText = date;   
 };
 
-/* Animationer under skrollning (Med jobbsektion)
-window.addEventListener("scroll", () => {
-    var scroll = this.scrollY;
-
-    if (scroll == 0) {
-        navInfo!.style.opacity = "1";
-        seeMore!.style.opacity = "1";
-    }
-
-    if (scroll > 0) {
-        navInfo!.style.opacity = "0";
-        seeMore!.style.opacity = "0";
-    }
-
-    if (scroll > 612 && scroll < 1500) {
-        this.document.body.style.background = "radial-gradient(circle, rgba(103,80,144,1) 0%, rgba(84,49,144,1) 15%, rgba(33,16,62,1) 80%";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "100%";
-        experience!.style.opacity = "15%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1.25)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
-    } else if (scroll > 1500 && scroll < 3064) {
-        this.document.body.style.backgroundColor = "#193225";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "15%";
-        experience!.style.opacity = "100%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1.25)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
-    } else if (scroll > 3064 && scroll < 4258) {
-        this.document.body.style.backgroundColor = "#161c30";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "15%";
-        experience!.style.opacity = "15%";
-        education!.style.opacity = "100%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1.25)";
-        contactIcon!.style.transform = "scale(1)";
-    } else if (scroll > 4258) {
-        this.document.body.style.backgroundColor = "#6c1d2b";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "15%";
-        experience!.style.opacity = "15%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "100%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1.25)";
-    } else {
-        this.document.body.style.background = "#101010";
-        
-        welcome!.style.opacity = "100%";
-        projects!.style.opacity = "15%";
-        experience!.style.opacity = "15%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
-    }
-}); */
-
 // Animationer när sidan laddats in
 window.addEventListener("load", () => {
     welcome!.style.opacity = "100%";
@@ -403,64 +311,3 @@ window.addEventListener("load", () => {
         seeMore!.style.opacity = "1";
     }, 3500)
 });
-
-/* Animationer under skrollning (Utan jobbsektion)
-window.addEventListener("scroll", () => {
-    var scroll = this.scrollY;
-
-    if (scroll == 0) {
-        navInfo!.style.opacity = "1";
-        seeMore!.style.opacity = "1";
-    }
-
-    if (scroll > 0) {
-        navInfo!.style.opacity = "0";
-        seeMore!.style.opacity = "0";
-    }
-
-    if (scroll > 612 && scroll < 1500) {
-        this.document.body.style.backgroundColor = "#21103e";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "100%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1.25)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
-    } else if (scroll > 1500 && scroll < 3064) {
-        this.document.body.style.backgroundColor = "#161c30";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "15%";
-        education!.style.opacity = "100%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1.25)";
-        contactIcon!.style.transform = "scale(1)";
-    } else if (scroll > 3064) {
-        this.document.body.style.backgroundColor = "#6c1d2b";
-
-        welcome!.style.opacity = "15%";
-        projects!.style.opacity = "15%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "100%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1.25)";
-    } else {
-        this.document.body.style.backgroundColor = "#101010";
-        
-        welcome!.style.opacity = "100%";
-        projects!.style.opacity = "15%";
-        education!.style.opacity = "15%";
-        contact!.style.opacity = "15%";
-
-        projectsIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
-    }
-}); */
