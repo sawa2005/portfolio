@@ -16,6 +16,10 @@ nav {
     align-items: center;
     z-index: 99;
 
+    a {
+        line-height: 0;
+    }
+
     ul {
         padding: 0px 30px;
         display: flex;
@@ -24,9 +28,19 @@ nav {
 
         li {
             text-align: center;
+            display: flex;
+            align-items: center;
 
             svg {
                 filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+            }
+
+            .icon-text {
+                position: absolute;
+                display: block;
+                width: max-content;
+                margin-left: 50px;
+                margin-bottom: 5px;
             }
         }
     }
@@ -133,4 +147,10 @@ main {
     bottom: 0;
     width: 100vw;
     text-align: center;
+}
+
+#gradient-overlay {
+    height: 550vh;
+    width: 100vw;
+    position: fixed;
 }

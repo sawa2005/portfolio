@@ -29,6 +29,12 @@ ul {
 
 .nav-icon {
     transition: transform .5s cubic-bezier(0, .5, 0, 1);
+    transition: 0.5s ease;
+}
+
+.icon-text {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
 }
 
 .item-info {
@@ -50,35 +56,62 @@ ul {
 
     .item-info {
         z-index: 99;
-        // display: block;
     }
 }
 
 // Animationer för icke-touch enheter
 @media (hover: hover) and (pointer: fine) {
-    a::after {
-        border-radius: 1em;
-        border-top: .1em solid white;
-        content: "";
-        position: absolute;
-        right: 100%;
-        bottom: 0;
-        left: 0;
-        transition: right .4s cubic-bezier(0, .5, 0, 1);
+    a:hover {
+        .nav-icon {
+            transform: scale(1.1);
+            filter: saturate(100%);
+            opacity: 1;
+        }
     }
-    
-    a:hover::after {
-        right: 0;
+
+    li:hover {
+        i {
+            display: inline;
+        }
+
+        .icon-text {
+            opacity: 1;
+        }
     }
+
+  
     
     nav:hover {
-        rect {
-            filter: brightness(180%) saturate(120%);
-        }
-    
         ul {
             transform: scale(1.02) translateX(10px);
             transition: transform 1s cubic-bezier(0, .5, 0, 1);
         }
+
+        #logo {
+            filter: saturate(100%);
+            opacity: 1;
+        }
+
+        svg {
+            transform: scale(1);
+            filter: saturate(0%);
+            opacity: 0.2;
+        }
+
+        #nav-info {
+            opacity: 0 !important;
+        }
+    }
+
+    .active {
+        transform: scale(1.25);
+        filter: saturate(100%);
+        opacity: 100%;
+    }
+    
+    .inactive {
+        transform: scale(1);
+        filter: saturate(0%);
+        opacity: 20%;
     }
 }

@@ -19,6 +19,7 @@ const educationIcon = document.getElementById('education-icon');
 const contactIcon = document.getElementById('contact-icon');
 
 let body = document.querySelector('body');
+let gradientEl = document.getElementById('gradient-overlay');
 var range: any;
 
 // Variabler för gradientanimation
@@ -36,58 +37,58 @@ let oldSectionNum = 0;                                          // <-- tidigare 
 // Gradientfärger
 const gradientColorOne = [
     [
-        { aPct: 0, pct: 0, color: { r: 53, g: 53, b: 53 } },
-        { aPct: 100, pct: 0,  color: { r: 103, g: 80, b: 144 } }
+        { aPct: 0, pct: 0, color: { r: 80, g: 80, b: 80 } },
+        { aPct: 100, pct: 0,  color: { r: 133, g: 102, b: 187 } }
     ],
     [
-        { aPct: 0, pct: 0,  color: { r: 103, g: 80, b: 144 } },
-        { aPct: 100, pct: 0,  color: { r: 82, g: 166, b: 122 } }
+        { aPct: 0, pct: 0,  color: { r: 133, g: 102, b: 187 } },
+        { aPct: 100, pct: 0,  color: { r: 102, g: 187, b: 142 } }
     ],
     [
-        { aPct: 0, pct: 0,  color: { r: 82, g: 166, b: 122 } },
-        { aPct: 100, pct: 0,  color: { r: 59, g: 75, b: 131 } }
+        { aPct: 0, pct: 0,  color: { r: 102, g: 187, b: 142 } },
+        { aPct: 100, pct: 0,  color: { r: 90, g: 112, b: 163 } }
     ],
     [
-        { aPct: 0, pct: 0,  color: { r: 59, g: 75, b: 131 } },
-        { aPct: 100, pct: 0,  color: { r: 222, g: 61, b: 90 } }
+        { aPct: 0, pct: 0,  color: { r: 90, g: 112, b: 163 } },
+        { aPct: 100, pct: 0,  color: { r: 248, g: 104, b: 64 } }
     ]
 ]
 
 const gradientColorTwo = [
     [
-        { aPct: 0, pct: 30, color: { r: 40, g: 40, b: 40 } },
-        { aPct: 100, pct: 30,  color: { r: 84, g: 49, b: 144 } }
+        { aPct: 0, pct: 30, color: { r: 51, g: 51, b: 51 } },
+        { aPct: 100, pct: 30,  color: { r: 77, g: 45, b: 131 } }
     ],
     [
-        { aPct: 0, pct: 30,  color: { r: 84, g: 49, b: 144 } },
-        { aPct: 100, pct: 30,  color: { r: 58, g: 116, b: 86 } }
+        { aPct: 0, pct: 30,  color: { r: 77, g: 45, b: 131 } },
+        { aPct: 100, pct: 30,  color: { r: 45, g: 131, b: 85 } }
     ],
     [
-        { aPct: 0, pct: 30,  color: { r: 58, g: 116, b: 86 } },
-        { aPct: 100, pct: 30,  color: { r: 51, g: 61, b: 99 } }
+        { aPct: 0, pct: 30,  color: { r: 45, g: 131, b: 85 } },
+        { aPct: 100, pct: 30,  color: { r: 45, g: 79, b: 131 } }
     ],
     [
-        { aPct: 0, pct: 30,  color: { r: 51, g: 61, b: 99 } },
-        { aPct: 100, pct: 30,  color: { r: 179, g: 48, b: 71 } }
+        { aPct: 0, pct: 30,  color: { r: 45, g: 79, b: 131 } },
+        { aPct: 100, pct: 30,  color: { r: 173, g: 57, b: 25 } }
     ]
 ]
 
 const gradientColorThree = [
     [
         { aPct: 0, pct: 100, color: { r: 0, g: 0, b: 0 } },
-        { aPct: 100, pct: 100,  color: { r: 33, g: 16, b: 62 } }
+        { aPct: 100, pct: 100,  color: { r: 18, g: 9, b: 33 } }
     ],
     [
-        { aPct: 0, pct: 100,  color: { r: 33, g: 16, b: 62 } },
-        { aPct: 100, pct: 100,  color: { r: 25, g: 50, b: 37 } }
+        { aPct: 0, pct: 100,  color: { r: 18, g: 9, b: 33 } },
+        { aPct: 100, pct: 100,  color: { r: 9, g: 33, b: 18 } }
     ],
     [
-        { aPct: 0, pct: 100,  color: { r: 25, g: 50, b: 37 } },
-        { aPct: 100, pct: 100,  color: { r: 22, g: 28, b: 48 } }
+        { aPct: 0, pct: 100,  color: { r: 9, g: 33, b: 18 } },
+        { aPct: 100, pct: 100,  color: { r: 9, g: 17, b: 33 } }
     ],
     [
-        { aPct: 0, pct: 100,  color: { r: 22, g: 28, b: 48 } },
-        { aPct: 100, pct: 100,  color: { r: 108, g: 29, b: 43 } }
+        { aPct: 0, pct: 100,  color: { r: 9, g: 17, b: 33 } },
+        { aPct: 100, pct: 100,  color: { r: 19, g: 8, b: 5 } }
     ]
 ]
 
@@ -95,7 +96,7 @@ const gradientColorThree = [
 let c1 = gradientColorOne[0][0];
 let c2 = gradientColorTwo[0][0];
 let c3 = gradientColorThree[0][0];
-body!.style.background = `radial-gradient(circle, rgba(${c1.color.r},${c1.color.g},${c1.color.b},1) ${c1.pct}%, rgba(${c2.color.r},${c2.color.g},${c2.color.b},1) ${c2.pct}%, rgba(${c3.color.r},${c3.color.g},${c3.color.b},1) ${c3.pct}%)`;
+gradientEl!.style.background = `radial-gradient(circle, rgba(${c1.color.r},${c1.color.g},${c1.color.b},1) ${c1.pct}%, rgba(${c2.color.r},${c2.color.g},${c2.color.b},1) ${c2.pct}%, rgba(${c3.color.r},${c3.color.g},${c3.color.b},1) ${c3.pct}%)`;
 
 // Funktion som tar fram färgerna mellan två färger
 const getColor = function(aPct: number, colorSet: string | any[]) {
@@ -130,8 +131,6 @@ const animateGradient = function() {
             let colorOne = "";
             let colorTwo = "";
             let colorThree = "";
-
-            console.log("Current percent: " + currentPct);
             
             // Om animationens riktning är framåt
             if (animationDirection === 'forwards' && currentPct != 100) {
@@ -169,7 +168,7 @@ const animateGradient = function() {
             let generateGradient = `radial-gradient(circle, ${colorOne} 0%, ${colorTwo} 30%, ${colorThree} 100%)`;
 
             // Lägg till den till bakgrunden
-            body!.style.backgroundImage = generateGradient;
+            gradientEl!.style.backgroundImage = generateGradient;
         }, 16.667); // 60 FPS
     }
 };
@@ -209,6 +208,12 @@ window.addEventListener("scroll", () => {
         seeMore!.style.opacity = "0";
     }
 
+    if (scrollPos > 612) {
+        gradientEl!.style.height = "100vh";
+    } else {
+        gradientEl!.style.height = "500vh";
+    }
+
     if (scrollPos > 612 && scrollPos < 1500) {     
         oldSectionNum = sectionNum;
         sectionNum = 1;
@@ -219,10 +224,10 @@ window.addEventListener("scroll", () => {
         education!.style.opacity = "15%";
         contact!.style.opacity = "15%";
 
-        projectsIcon!.style.transform = "scale(1.25)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
+        projectsIcon!.setAttribute('class', 'nav-icon active')
+        experienceIcon!.setAttribute('class', 'nav-icon inactive')
+        educationIcon!.setAttribute('class', 'nav-icon inactive')
+        contactIcon!.setAttribute('class', 'nav-icon inactive')
     } else if (scrollPos > 1500 && scrollPos < 3064) {
         oldSectionNum = sectionNum;
         sectionNum = 2;
@@ -233,10 +238,10 @@ window.addEventListener("scroll", () => {
         education!.style.opacity = "15%";
         contact!.style.opacity = "15%";
 
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1.25)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
+        projectsIcon!.setAttribute('class', 'nav-icon inactive')
+        experienceIcon!.setAttribute('class', 'nav-icon active')
+        educationIcon!.setAttribute('class', 'nav-icon inactive')
+        contactIcon!.setAttribute('class', 'nav-icon inactive')
     } else if (scrollPos > 3064 && scrollPos < 4258) {
         oldSectionNum = sectionNum;
         sectionNum = 3;
@@ -247,10 +252,10 @@ window.addEventListener("scroll", () => {
         education!.style.opacity = "100%";
         contact!.style.opacity = "15%";
 
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1.25)";
-        contactIcon!.style.transform = "scale(1)";
+        projectsIcon!.setAttribute('class', 'nav-icon inactive')
+        experienceIcon!.setAttribute('class', 'nav-icon inactive')
+        educationIcon!.setAttribute('class', 'nav-icon active')
+        contactIcon!.setAttribute('class', 'nav-icon inactive')
     } else if (scrollPos > 4258) {
         oldSectionNum = sectionNum;
         sectionNum = 4;
@@ -261,10 +266,10 @@ window.addEventListener("scroll", () => {
         education!.style.opacity = "15%";
         contact!.style.opacity = "100%";
 
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1.25)";
+        projectsIcon!.setAttribute('class', 'nav-icon inactive')
+        experienceIcon!.setAttribute('class', 'nav-icon inactive')
+        educationIcon!.setAttribute('class', 'nav-icon inactive')
+        contactIcon!.setAttribute('class', 'nav-icon active')
     } else {
         oldSectionNum = sectionNum;
         sectionNum = 0;
@@ -275,10 +280,10 @@ window.addEventListener("scroll", () => {
         education!.style.opacity = "15%";
         contact!.style.opacity = "15%";
 
-        projectsIcon!.style.transform = "scale(1)";
-        experienceIcon!.style.transform = "scale(1)";
-        educationIcon!.style.transform = "scale(1)";
-        contactIcon!.style.transform = "scale(1)";
+        projectsIcon!.setAttribute('class', 'nav-icon')
+        experienceIcon!.setAttribute('class', 'nav-icon')
+        educationIcon!.setAttribute('class', 'nav-icon')
+        contactIcon!.setAttribute('class', 'nav-icon')
     }
 });
 

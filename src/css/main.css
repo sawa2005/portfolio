@@ -17,11 +17,18 @@ h4 {
   letter-spacing: 0.125rem;
 }
 
-p {
+p, i {
   font-family: mundial, sans-serif;
   font-weight: 200;
   letter-spacing: 0.125rem;
   font-size: 1.25rem;
+}
+
+nav i {
+  font-family: mundial, sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.125rem;
+  font-size: 1rem;
 }
 
 a {
@@ -60,6 +67,9 @@ nav {
   align-items: center;
   z-index: 99;
 }
+nav a {
+  line-height: 0;
+}
 nav ul {
   padding: 0px 30px;
   display: flex;
@@ -68,9 +78,18 @@ nav ul {
 }
 nav ul li {
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 nav ul li svg {
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
+}
+nav ul li .icon-text {
+  position: absolute;
+  display: block;
+  width: max-content;
+  margin-left: 50px;
+  margin-bottom: 5px;
 }
 
 main {
@@ -160,6 +179,12 @@ main #welcome p {
   text-align: center;
 }
 
+#gradient-overlay {
+  height: 550vh;
+  width: 100vw;
+  position: fixed;
+}
+
 a {
   position: relative;
 }
@@ -189,6 +214,12 @@ ul {
 
 .nav-icon {
   transition: transform 0.5s cubic-bezier(0, 0.5, 0, 1);
+  transition: 0.5s ease;
+}
+
+.icon-text {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 
 .item-info {
@@ -211,25 +242,42 @@ ul {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a::after {
-    border-radius: 1em;
-    border-top: 0.1em solid white;
-    content: "";
-    position: absolute;
-    right: 100%;
-    bottom: 0;
-    left: 0;
-    transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
+  a:hover .nav-icon {
+    transform: scale(1.1);
+    filter: saturate(100%);
+    opacity: 1;
   }
-  a:hover::after {
-    right: 0;
+  li:hover i {
+    display: inline;
   }
-  nav:hover rect {
-    filter: brightness(180%) saturate(120%);
+  li:hover .icon-text {
+    opacity: 1;
   }
   nav:hover ul {
     transform: scale(1.02) translateX(10px);
     transition: transform 1s cubic-bezier(0, 0.5, 0, 1);
+  }
+  nav:hover #logo {
+    filter: saturate(100%);
+    opacity: 1;
+  }
+  nav:hover svg {
+    transform: scale(1);
+    filter: saturate(0%);
+    opacity: 0.2;
+  }
+  nav:hover #nav-info {
+    opacity: 0 !important;
+  }
+  .active {
+    transform: scale(1.25);
+    filter: saturate(100%);
+    opacity: 100%;
+  }
+  .inactive {
+    transform: scale(1);
+    filter: saturate(0%);
+    opacity: 20%;
   }
 }
 @media (min-width: 1251px) and (max-width: 1400px) {

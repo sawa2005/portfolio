@@ -18,11 +18,12 @@
     <meta name="theme-color" content="#21103e">
 </head>
 <body>
+    <div id="gradient-overlay"></div>
     <nav>
         <ul>
             <li>
                 <a href="#top">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34.046" viewBox="0 0 34 34.046">
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="34" height="34.046" viewBox="0 0 34 34.046">
                         <path id="logo_-_alt" data-name="logo - alt" d="M17.673,2050.046l-2.361-10.185h-.185l-2.315,10.185H.885a2.619,2.619,0,0,1-2.619-2.619v-12.515H4.2l2.083,10.128H6.47l2.407-10.128h12.73l2.407,10.128H24.2l2.083-10.128h5.983v12.693a3.4,3.4,0,0,1-.03.451,2.62,2.62,0,0,1-2.543,1.99Zm11.962-16.4H15.963v-16.461a9.285,9.285,0,0,0,0-1.183h7.767v10.513h8.536v7.131Zm-31.369,0V2028.5a53.932,53.932,0,0,1,6.788.5c.733.04,3.046.039,4.053-.891.36-.391-.083-2.2-1.1-2.2l-5.775-.739c-.822-.168-3.545-1.382-3.966-4.071v-2.476A2.619,2.619,0,0,1,.885,2016H14.521v4.105c-2,0-7.489-.44-8.629-.44-.522,0-1.451-.056-1.6.808a1.81,1.81,0,0,0,1.6,1.656l4.026.364c1.342.025,4.654.47,4.6,3.71v7.44H.849l-1.758,0Z" transform="translate(1.734 -2016)" fill="#fff"/>
                     </svg>
                 </a>
@@ -30,40 +31,52 @@
             <li class="mobile-hide">
                 <a href="#projects">
                     <svg id="projects-icon" class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
-                        <rect width="34" height="34" rx="3" fill="#21103e"/>
+                        <rect width="34" height="34" rx="3" fill="#4D2D83"/>
                         <path data-name="Icon material-web" d="M20.062,0H2.229A2.226,2.226,0,0,0,.011,2.229L0,15.6a2.236,2.236,0,0,0,2.229,2.229H20.062A2.236,2.236,0,0,0,22.291,15.6V2.229A2.236,2.236,0,0,0,20.062,0ZM14.489,15.6H2.229V11.146h12.26Zm0-5.573H2.229V5.573h12.26ZM20.062,15.6H15.6V5.573h4.458Z" transform="translate(6.112 8.15)" fill="#fff"/>
                     </svg>              
                 </a>
+                <div class="icon-text">
+                    <i>/ projects</i>
+                </div>
             </li>
             <li class="mobile-hide">
                 <a href="#experience">
                     <svg id="experience-icon" class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
-                        <rect data-name="NoPath - kopia" width="34" height="34" rx="3" fill="#193225"/>
+                        <rect data-name="NoPath - kopia" width="34" height="34" rx="3" fill="#2D8355"/>
                         <path data-name="Icon awesome-briefcase" d="M12.738,12.1a.637.637,0,0,1-.637.637H8.28a.637.637,0,0,1-.637-.637V10.19H0v5.732a1.959,1.959,0,0,0,1.911,1.911H18.47a1.959,1.959,0,0,0,1.911-1.911V10.19H12.738Zm5.732-8.28H15.286V1.911A1.959,1.959,0,0,0,13.375,0H7.006A1.959,1.959,0,0,0,5.1,1.911V3.821H1.911A1.959,1.959,0,0,0,0,5.732V8.917H20.381V5.732A1.959,1.959,0,0,0,18.47,3.821Zm-5.732,0h-5.1V2.548h5.1Z" transform="translate(7.229 7.772)" fill="#fff"/>
                     </svg>                                  
                 </a>
+                <div class="icon-text">
+                    <i>/ experience</i>
+                </div>
             </li>
             <li class="mobile-hide">
                 <a href="#education">
                     <svg id="education-icon" class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
-                        <rect data-name="NoPath - kopia (7)" width="34" height="34" rx="3" fill="#161c30"/>
+                        <rect data-name="NoPath - kopia (7)" width="34" height="34" rx="3" fill="#2D4F83"/>
                         <path data-name="Icon awesome-graduation-cap" d="M22.865,3.739,12.616.147a2.589,2.589,0,0,0-1.719,0L.649,3.739a1.028,1.028,0,0,0,0,1.911l1.787.626a3.585,3.585,0,0,0-.657,1.966,1.392,1.392,0,0,0-.094,2.223L.747,15.281a.653.653,0,0,0,.574.816H3.382a.653.653,0,0,0,.574-.816l-.938-4.816a1.39,1.39,0,0,0-.066-2.2,2.053,2.053,0,0,1,.76-1.539L10.9,9.243a2.593,2.593,0,0,0,1.719,0L22.865,5.651a1.028,1.028,0,0,0,0-1.911Zm-9.9,6.786a3.629,3.629,0,0,1-2.41,0L5.224,8.658,4.7,13.414C4.7,14.9,7.861,16.1,11.757,16.1s7.054-1.2,7.054-2.683L18.29,8.657l-5.328,1.868Z" transform="translate(5.243 8.952)" fill="#fff"/>
                     </svg>                                  
                 </a>
+                <div class="icon-text">
+                    <i>/ education</i>
+                </div>
             </li>
             <li class="mobile-hide">
                 <a href="#contact">
                     <svg id="contact-icon" class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
-                        <rect width="34" height="34" rx="3" fill="#6c1d2b"/>
+                        <rect width="34" height="34" rx="3" fill="#AD3919"/>
                         <path data-name="Icon material-mail" d="M17.06,0H1.9A1.893,1.893,0,0,0,.009,1.9L0,13.269a1.9,1.9,0,0,0,1.9,1.9H17.06a1.9,1.9,0,0,0,1.9-1.9V1.9A1.9,1.9,0,0,0,17.06,0Zm0,3.791L9.478,8.53,1.9,3.791V1.9L9.478,6.634,17.06,1.9Z" transform="translate(7.819 9.351)" fill="#fff"/>
                     </svg>                                 
                 </a>
+                <div class="icon-text">
+                    <i>/ contact</i>
+                </div>
             </li>
             <li class="mobile-hide">
                 <p id="date"><!-- Current time --></p>
             </li>
         </ul>
-        <svg xmlns="http://www.w3.org/2000/svg" width="158.735" height="439.5" viewBox="0 0 158.735 439.5" id="nav-info">
+        <svg xmlns="http://www.w3.org/2000/svg" width="158.735" height="410" viewBox="0 0 158.735 439.5" id="nav-info">
             <text id="skip_to_sections" data-name="skip to sections" transform="translate(30.735 224)" fill="#fff" font-size="15" font-family="Mundial-Thin, Mundial" font-weight="200" letter-spacing="0.1em"><tspan x="0" y="0">skip to sections</tspan></text>
             <text id="back_to_top" data-name="back to top" transform="translate(30.735 17)" fill="#fff" font-size="15" font-family="Mundial-Thin, Mundial" font-weight="200" letter-spacing="0.1em"><tspan x="0" y="0">back to top</tspan></text>
             <text id="current_time" data-name="current time" transform="translate(30.735 435.5)" fill="#fff" font-size="15" font-family="Mundial-Thin, Mundial" font-weight="200" letter-spacing="0.1em"><tspan x="0" y="0">current time</tspan></text>
