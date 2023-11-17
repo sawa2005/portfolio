@@ -12,6 +12,7 @@ const contact = document.getElementById('contact-text');
 
 const navInfo = document.getElementById('nav-info');
 const seeMore = document.getElementById('see-more');
+const bgImg = document.getElementById('welcome-bg');
 
 const projectsIcon = document.getElementById('projects-icon');
 const experienceIcon = document.getElementById('experience-icon');
@@ -201,11 +202,13 @@ window.addEventListener("scroll", () => {
     if (scrollPos == 0) {
         navInfo!.style.opacity = "1";
         seeMore!.style.opacity = "1";
+        bgImg!.style.opacity = "1";
     }
 
     if (scrollPos > 0) {
         navInfo!.style.opacity = "0";
         seeMore!.style.opacity = "0";
+        bgImg!.style.opacity = "0";
     }
 
     if (scrollPos > 612) {
@@ -316,5 +319,6 @@ window.addEventListener("load", () => {
     setTimeout( () => {
         navInfo!.style.opacity = "1";
         seeMore!.style.opacity = "1";
+        bgImg!.style.opacity = "1";
     }, 3500)
 });

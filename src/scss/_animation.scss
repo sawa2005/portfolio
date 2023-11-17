@@ -59,6 +59,11 @@ ul {
     }
 }
 
+#welcome-bg {
+    transition: opacity 1s ease;
+    opacity: 0;
+}
+
 // Animationer för icke-touch enheter
 @media (hover: hover) and (pointer: fine) {
     a:hover {

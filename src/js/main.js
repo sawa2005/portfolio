@@ -102,6 +102,7 @@ var education = document.getElementById('education-text');
 var contact = document.getElementById('contact-text');
 var navInfo = document.getElementById('nav-info');
 var seeMore = document.getElementById('see-more');
+var bgImg = document.getElementById('welcome-bg');
 var projectsIcon = document.getElementById('projects-icon');
 var experienceIcon = document.getElementById('experience-icon');
 var educationIcon = document.getElementById('education-icon');
@@ -269,10 +270,12 @@ window.addEventListener("scroll", function () {
     if (scrollPos == 0) {
         navInfo.style.opacity = "1";
         seeMore.style.opacity = "1";
+        bgImg.style.opacity = "1";
     }
     if (scrollPos > 0) {
         navInfo.style.opacity = "0";
         seeMore.style.opacity = "0";
+        bgImg.style.opacity = "0";
     }
     if (scrollPos > 612) {
         gradientEl.style.height = "100vh";
@@ -372,5 +375,6 @@ window.addEventListener("load", function () {
     setTimeout(function () {
         navInfo.style.opacity = "1";
         seeMore.style.opacity = "1";
+        bgImg.style.opacity = "1";
     }, 3500);
 });
