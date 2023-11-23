@@ -4,20 +4,33 @@
 var studiesEl = document.getElementById("studies");
 var workEl = document.getElementById("work");
 var websitesEl = document.getElementById("websites");
+var itemsElArray = document.getElementsByClassName("items");
 // Funktioner
 // Hämta och skriv ut kurser
 function getCourses() {
     // Återställ inläggslistan
     studiesEl.innerHTML = '';
     // Hämta och skriv ut inlägg
+    fetch('https://samuelwarduppgifter.one/restprojekt/programs.php')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        // Sorterar inläggen i datumsordning
+        data.sort(sortByDate);
+        data.forEach(function (program) {
+            studiesEl.innerHTML +=
+                "<div class=\"item\">\n                    <h4>".concat(program.startDate, " - ").concat((program.endDate) ? (program.endDate) : ("Today"), " | ").concat(program.school, " | Program</h4>\n                    <h1>").concat(program.name, "</h1>\n                    <div id=\"courses-").concat(program.id, "\">\n                    </div>\n                </div>");
+        });
+    });
     fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
         .then(function (response) { return response.json(); })
         .then(function (data) {
         // Sorterar inläggen i datumsordning
         data.sort(sortByDate);
         data.forEach(function (course) {
-            studiesEl.innerHTML +=
-                "<div class=\"item\">\n                    <h4>".concat(course.startDate, " - ").concat(course.endDate, " | ").concat(course.type, " | ").concat(course.school, "</h4>\n                    <h1>").concat(course.name, "</h1>\n                </div>");
+            if (document.getElementById("courses-" + course.program) != null) {
+                document.getElementById("courses-" + course.program).innerHTML +=
+                    "<div class=\"item\">\n                    <h5>".concat(course.startDate, " - ").concat((course.endDate) ? (course.endDate) : ("Today"), " | Course</h5>\n                    <h3>").concat(course.name, "</h3>\n                </div>");
+            }
         });
     });
 }
@@ -30,14 +43,8 @@ function getJobs() {
         data.sort(sortByDate);
         data.forEach(function (work) {
             // Ser till att slutdatumet endast skrivs ut om det finns
-            if (work.endDate == null) {
-                workEl.innerHTML +=
-                    "<div class=\"item\">\n                        <h4>".concat(work.startDate, " - Today | ").concat(work.job, "</h4>\n                        <h1>").concat(work.title, "</h1>\n                    </div>");
-            }
-            else {
-                workEl.innerHTML +=
-                    "<div class=\"item\">\n                        <h4>".concat(work.startDate, " - ").concat(work.endDate, " | ").concat(work.job, "</h4>\n                        <h1>").concat(work.title, "</h1>\n                    </div>");
-            }
+            workEl.innerHTML +=
+                "<div class=\"item\">\n                    <h4>".concat(work.startDate, " - ").concat((work.endDate) ? (work.endDate) : ("Today"), " | ").concat(work.job, "</h4>\n                    <h1>").concat(work.title, "</h1>\n                    <div class=\"item-info\">\n                        <p>").concat(work.description, "</p>\n                    </div>\n                </div>");
         });
     });
 }
@@ -50,7 +57,7 @@ function getWebsites() {
         data.sort(sortByYear);
         data.forEach(function (website) {
             websitesEl.innerHTML +=
-                "<div class=\"item\">\n                    <h4>".concat(website.year, " | ").concat(website.type, "</h4>\n                    <h1>").concat(website.title, "</h1>\n                    <div class=\"item-info\">\n                        <p>").concat(website.description, "</p>\n                        <br><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.603\" height=\"11.801\" viewBox=\"0 0 23.603 11.801\">\n                            <path id=\"Icon_material-link\" data-name=\"Icon material-link\" d=\"M5.242,16.4A3.662,3.662,0,0,1,8.9,12.742h4.721V10.5H8.9a5.9,5.9,0,0,0,0,11.8h4.721V20.059H8.9A3.662,3.662,0,0,1,5.242,16.4Zm4.839,1.18h9.441v-2.36H10.081ZM20.7,10.5H15.982v2.242H20.7a3.658,3.658,0,0,1,0,7.317H15.982V22.3H20.7a5.9,5.9,0,0,0,0-11.8Z\" transform=\"translate(-3 -10.5)\" fill=\"#fff\"/>\n                        </svg>\n                        <a href=\"").concat(website.link, "\" target=\"_blank\"><i>").concat(website.link, "</i></a>\n                        <img src=\"imgs/").concat(website.image, "\" alt=\"Preview of ").concat(website.title, "\">\n                    </div>\n                </div>");
+                "<div class=\"item\">\n                    <h4>".concat(website.year, " | ").concat(website.type, "</h4>\n                    <h1>").concat(website.title, "</h1>\n                    <div class=\"item-info\">\n                        <p>").concat(website.description, "</p>\n                        <br><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.603\" height=\"11.801\" viewBox=\"0 0 23.603 11.801\">\n                            <path id=\"Icon_material-link\" data-name=\"Icon material-link\" d=\"M5.242,16.4A3.662,3.662,0,0,1,8.9,12.742h4.721V10.5H8.9a5.9,5.9,0,0,0,0,11.8h4.721V20.059H8.9A3.662,3.662,0,0,1,5.242,16.4Zm4.839,1.18h9.441v-2.36H10.081ZM20.7,10.5H15.982v2.242H20.7a3.658,3.658,0,0,1,0,7.317H15.982V22.3H20.7a5.9,5.9,0,0,0,0-11.8Z\" transform=\"translate(-3 -10.5)\" fill=\"#fff\"/>\n                        </svg>\n                        <a href=\"").concat(website.link, "\" target=\"_blank\"><i>").concat(website.link, "</i></a>\n                        <img class=\"item-img\" src=\"imgs/").concat(website.image, "\" alt=\"Preview of ").concat(website.title, "\">\n                    </div>\n                </div>");
         });
     });
 }
@@ -69,27 +76,37 @@ window.addEventListener('load', function () {
     getWebsites();
 });
 // Visar webbsidornas info när rubriken klickas
-websitesEl.addEventListener('click', function (e) {
-    var target = e.target;
-    var currentTarget = e.currentTarget;
-    var item = target.parentNode;
-    var items = Array.from(currentTarget.querySelectorAll('.item-info'));
-    var info = item.querySelector('.item-info');
-    if (item.matches('div')) {
-        if (info.style.display == "block") {
-            for (var i = 0; i < items.length; i++) {
-                items[i].style.display = "none";
+for (var i = 0; i < itemsElArray.length; i++) {
+    itemsElArray[i].addEventListener('click', function (e) {
+        var target = e.target;
+        var currentTarget = e.currentTarget;
+        var item = target.parentNode;
+        var items = Array.from(currentTarget.querySelectorAll('.item-info'));
+        var info = item.querySelector('.item-info');
+        if (item.matches('div')) {
+            if (info.style.display == "block") {
+                info.style.transform = "translateX(700px)";
+                info.style.opacity = "0";
+                setTimeout(function () {
+                    info.style.display = "none";
+                    for (var i_1 = 0; i_1 < items.length; i_1++) {
+                        items[i_1].style.display = "none";
+                    }
+                }, 500);
             }
-            info.style.display = "none";
-        }
-        else {
-            for (var i = 0; i < items.length; i++) {
-                items[i].style.display = "none";
+            else {
+                for (var i_2 = 0; i_2 < items.length; i_2++) {
+                    items[i_2].style.display = "none";
+                }
+                info.style.display = "block";
+                setTimeout(function () {
+                    info.style.transform = "translateX(0)";
+                    info.style.opacity = "1";
+                }, 100);
             }
-            info.style.display = "block";
         }
-    }
-});
+    });
+}
 // Generell kod och animationer
 var _this = this;
 // Variabler

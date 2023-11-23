@@ -30,10 +30,24 @@ h1 {
     font-size: 192px;
 }
 
+h3 {
+    font-family: $header-font;
+    font-weight: 300;
+    font-size: 1.8rem;
+    // text-transform: lowercase;
+}
+
 h4 {
     font-family: $main-font;
     font-weight: 400;
     font-size: 1.25rem;
+    letter-spacing: 0.125rem;
+}
+
+h5 {
+    font-family: $main-font;
+    font-weight: 300;
+    font-size: 0.7rem;
     letter-spacing: 0.125rem;
 }
 

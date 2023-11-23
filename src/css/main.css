@@ -10,10 +10,23 @@ h1 {
   font-size: 192px;
 }
 
+h3 {
+  font-family: bicyclette, sans-serif;
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+
 h4 {
   font-family: mundial, sans-serif;
   font-weight: 400;
   font-size: 1.25rem;
+  letter-spacing: 0.125rem;
+}
+
+h5 {
+  font-family: mundial, sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
   letter-spacing: 0.125rem;
 }
 
@@ -58,6 +71,7 @@ a {
 body {
   background-color: #101010;
   color: #fff;
+  overflow-x: hidden;
 }
 
 nav {
@@ -126,6 +140,7 @@ main #contact > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 15px;
   width: 45%;
   height: 100vh;
   margin-left: auto;
@@ -163,6 +178,7 @@ main #welcome p {
 .items .item .item-info {
   max-width: 700px;
   margin-left: auto;
+  position: relative;
 }
 .items .item .item-info img {
   max-width: 700px;
@@ -233,21 +249,9 @@ ul {
 
 .item-info {
   display: none;
-}
-
-.item {
-  transition: opacity 0.5s ease-out;
-}
-
-.items:hover .item:not(:hover) {
-  opacity: 0.15;
-}
-
-.item:hover {
-  opacity: 1;
-}
-.item:hover .item-info {
-  z-index: 99;
+  opacity: 0;
+  transform: translateX(700px);
+  transition: all 0.5s cubic-bezier(0, 0.5, 0, 1);
 }
 
 #welcome-bg {
@@ -260,6 +264,19 @@ ul {
     transform: scale(1.1);
     filter: saturate(100%);
     opacity: 1;
+  }
+  .contact-item a::after, #websites a::after {
+    border-radius: 1em;
+    border-top: 0.1em solid white;
+    content: "";
+    position: absolute;
+    right: 100%;
+    bottom: 0;
+    left: 0;
+    transition: right 0.4s cubic-bezier(0, 0.5, 0, 1);
+  }
+  .contact-item a:hover::after, #websites a:hover::after {
+    right: 0;
   }
   li:hover i {
     display: inline;
@@ -292,6 +309,18 @@ ul {
     transform: scale(1);
     filter: saturate(0%);
     opacity: 20%;
+  }
+  .item {
+    transition: opacity 0.5s ease-out;
+  }
+  .items:hover .item:not(:hover) {
+    opacity: 0.15;
+  }
+  .item:hover {
+    opacity: 1;
+  }
+  .item:hover .item-info {
+    z-index: 99;
   }
 }
 @media (min-width: 1251px) and (max-width: 1400px) {

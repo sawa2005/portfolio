@@ -39,24 +39,9 @@ ul {
 
 .item-info {
     display: none;
-}
-
-.item {
-    transition: opacity .5s ease-out;
-}
-
-.items:hover {
-    .item:not(:hover) {
-        opacity: .15;
-    }
-}
-
-.item:hover {
-    opacity: 1;
-
-    .item-info {
-        z-index: 99;
-    }
+    opacity: 0;
+    transform: translateX(700px);
+    transition: all .5s cubic-bezier(0, .5, 0, 1);
 }
 
 #welcome-bg {
@@ -72,6 +57,21 @@ ul {
             filter: saturate(100%);
             opacity: 1;
         }
+    }
+
+    .contact-item a::after, #websites a::after{
+        border-radius: 1em;
+        border-top: .1em solid white;
+        content: "";
+        position: absolute;
+        right: 100%;
+        bottom: 0;
+        left: 0;
+        transition: right .4s cubic-bezier(0, .5, 0, 1);
+    }
+    
+    .contact-item a:hover::after, #websites a:hover::after {
+        right: 0;
     }
 
     li:hover {
@@ -118,5 +118,23 @@ ul {
         transform: scale(1);
         filter: saturate(0%);
         opacity: 20%;
+    }
+
+    .item {
+        transition: opacity .5s ease-out;
+    }
+    
+    .items:hover {
+        .item:not(:hover) {
+            opacity: .15;
+        }
+    }
+    
+    .item:hover {
+        opacity: 1;
+    
+        .item-info {
+            z-index: 99;
+        }
     }
 }
