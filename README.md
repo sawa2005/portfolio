@@ -19,7 +19,7 @@ The portfolio was created as the final project of a university course called Web
 
 * Clone this repository by running the following command in a terminal:
 ```
-git clone https://github.com/sawa2005/adminui.git
+git clone https://github.com/sawa2005/portfolio.git
 ```
 * Install the dependencies npm and Gulp (install guides on their respective websites).
 * Install the npm packages needed using the following command:
