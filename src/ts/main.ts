@@ -27,7 +27,7 @@ var range: any;
 let transitionTime = 1000                                       // <-- hur lång animationen ska vara i millisekunder
 let previousTime: any, start = 0;                               // <-- lagrar data under animationen
 let animationDirection = "forwards";                            // <-- lagrar animationens riktning
-let intervalFrame: string | number | NodeJS.Timer | undefined;  // <-- lagrar intervall
+let intervalFrame: NodeJS.Timeout | number | undefined;         // <-- lagrar intervall
 let currentPct = 0;                                             // <-- antalet procent av animationen som har slutförts
 let elapsed = 0;                                                // <-- antalet bildrutor som har passerat 
 let scrollPos: number;                                          // <-- vertikala positionen som har skrollats till
@@ -161,8 +161,10 @@ const animateGradient = function() {
                 // Om denna körs är animationen klar och återställs
                 currentPct = 0;
                 elapsed = 0;
-                clearInterval(intervalFrame);
-                intervalFrame = undefined;
+                if (intervalFrame !== undefined) {
+                    clearInterval(intervalFrame);
+                    intervalFrame = undefined;
+                }
             }
 
             // Generera CSS sträng

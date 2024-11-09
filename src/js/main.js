@@ -251,8 +251,10 @@ var animateGradient = function () {
                 // Om denna körs är animationen klar och återställs
                 currentPct = 0;
                 elapsed = 0;
-                clearInterval(intervalFrame);
-                intervalFrame = undefined;
+                if (intervalFrame !== undefined) {
+                    clearInterval(intervalFrame);
+                    intervalFrame = undefined;
+                }
             }
             // Generera CSS sträng
             var generateGradient = "radial-gradient(circle, ".concat(colorOne, " 0%, ").concat(colorTwo, " 30%, ").concat(colorThree, " 100%)");

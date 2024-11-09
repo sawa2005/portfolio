@@ -3,8 +3,8 @@ const gulp = require("gulp");
 const { src, dest, series, watch, task } = require('gulp');
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
-const uglify = require('gulp-uglify-es').default;
-var sass = require('gulp-sass')(require('sass'));
+const terser = require('gulp-terser');
+var sass = require('gulp-dart-sass');
 var ts = require('gulp-typescript');
 var browserSync = require('browser-sync').create();
 
@@ -54,7 +54,7 @@ function tsTask() {
 function jsTask() {
     return src(files.jsPath)
     .pipe(concat('main.js'))
-    .pipe(uglify())
+    .pipe(terser())
     .pipe(dest('pub/js'));
 }
 
