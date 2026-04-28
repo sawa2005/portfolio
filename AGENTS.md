@@ -3,7 +3,9 @@
 ## Build Commands
 
 - `npm i` - Install dependencies
-- `gulp` - Build all assets and start dev server (livereload on `src/`)
+- `gulp` - Build + dev server (livereload on `src/`)
+- `gulp build` - Build to `pub/` (no server, for Cloudflare)
+- `wrangler pages deploy pub/` - Deploy to Cloudflare Pages
 
 ## Directory Structure
 

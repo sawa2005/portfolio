@@ -98,6 +98,17 @@ function watchTask(){
     watch([files.sassPath, files.jsPath], browsersyncReload);
 }
 
+// Build task for production (e.g., for Cloudflare Pages)
+exports.build = series(
+    copyHTML,
+    copyData,
+    tsTask,
+    jsTask,
+    imgTask,
+    sassTask,
+    cssTask
+);
+
 // Exporterar alla tasks
 exports.default = series(
     copyHTML,
