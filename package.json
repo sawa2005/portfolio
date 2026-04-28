@@ -22,5 +22,8 @@
     "gulp-terser": "^2.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "sass": "^1.80.6"
+  },
+  "dependencies": {
+    "wrangler": "^4.85.0"
   }
 }
