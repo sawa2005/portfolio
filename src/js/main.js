@@ -11,7 +11,7 @@ function getCourses() {
     // Återställ inläggslistan
     studiesEl.innerHTML = '';
     // Hämta och skriv ut inlägg
-    fetch('https://samuelwarduppgifter.one/restprojekt/programs.php')
+    fetch('data/programs.json')
         .then(function (response) { return response.json(); })
         .then(function (data) {
         // Sorterar inläggen i datumsordning
@@ -21,7 +21,7 @@ function getCourses() {
                 "<div class=\"item\">\n                    <h4>".concat(program.startDate, " - ").concat((program.endDate) ? (program.endDate) : ("Today"), " | ").concat(program.school, " | Program</h4>\n                    <h1>").concat(program.name, "</h1>\n                    <div id=\"courses-").concat(program.id, "\">\n                    </div>\n                </div>");
         });
     });
-    fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
+    fetch('data/studies.json')
         .then(function (response) { return response.json(); })
         .then(function (data) {
         // Sorterar inläggen i datumsordning
@@ -37,7 +37,7 @@ function getCourses() {
 // Hämta och skriv ut jobb
 function getJobs() {
     workEl.innerHTML = '';
-    fetch('https://samuelwarduppgifter.one/restprojekt/work.php')
+    fetch('data/work.json')
         .then(function (response) { return response.json(); })
         .then(function (data) {
         data.sort(sortByDate);
@@ -51,7 +51,7 @@ function getJobs() {
 // Hämta och skriv ut webbsidor
 function getWebsites() {
     websitesEl.innerHTML = '';
-    fetch('https://samuelwarduppgifter.one/restprojekt/websites.php')
+    fetch('data/websites.json')
         .then(function (response) { return response.json(); })
         .then(function (data) {
         data.sort(sortByYear);

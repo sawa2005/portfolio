@@ -1,0 +1,46 @@
+[
+{"type":"header","version":"5.2.3","comment":"Export to JSON plugin for phpMyAdmin"},
+{"type":"database","name":"slw_one_main"},
+{"type":"table","name":"programs","database":"slw_one_main","data":
+[
+{"id":"1","school":"Mid Sweden University","name":"Web Development","startDate":"2020-08-31","endDate":"2024-06-24"}
+]
+}
+,{"type":"table","name":"studies","database":"slw_one_main","data":
+[
+{"id":"1","name":"Web Development I","startDate":"2020-08-31","endDate":"2020-11-01","program":"1"},
+{"id":"2","name":"Introduction to Programming in JavaScript","startDate":"2020-08-31","endDate":"2020-11-01","program":"1"},
+{"id":"3","name":"Typography and Layout for Internet Publishing","startDate":"2020-11-02","endDate":"2021-01-17","program":"1"},
+{"id":"4","name":"Digital Imaging for the Web","startDate":"2020-11-02","endDate":"2021-01-17","program":"1"},
+{"id":"5","name":"Web Development II","startDate":"2021-01-18","endDate":"2021-03-21","program":"1"},
+{"id":"6","name":"Database Systems","startDate":"2021-01-18","endDate":"2021-03-21","program":"1"},
+{"id":"11","name":"Programming in C#.NET","startDate":"2021-11-01","endDate":"2022-01-16","program":"1"},
+{"id":"12","name":"Business Models","startDate":"2022-01-17","endDate":"2022-03-20","program":"1"},
+{"id":"20","name":"Web Usability","startDate":"2022-10-26","endDate":"2023-01-15","program":"1"},
+{"id":"21","name":"Web Design for CMS","startDate":"2022-03-21","endDate":"2022-06-05","program":"1"},
+{"id":"22","name":"Web Development with .NET","startDate":"2023-01-16","endDate":"2023-03-19","program":"1"},
+{"id":"24","name":"Web Development III","startDate":"2021-08-30","endDate":"2023-03-21","program":"1"},
+{"id":"25","name":"Project Management","startDate":"2021-08-30","endDate":"2023-10-29","program":"1"},
+{"id":"26","name":"Web Development with JavaScript","startDate":"2021-11-02","endDate":"2024-04-04","program":"1"},
+{"id":"27","name":"Individual Assignment","startDate":"2023-03-20","endDate":"2024-06-24","program":"1"}
+]
+}
+,{"type":"table","name":"websites","database":"slw_one_main","data":
+[
+{"id":"1","title":"PostHouse","type":"University Project","link":"http:\/\/posthouse.one\/","description":"Blog \/ Social media website made as a final project in the course Web Development II at Mittuniversitetet. The inspiration was to make a simpler version of Twitter and make use of newly learned PHP-skills.","image":"\/posthouse.png","year":"2021"},
+{"id":"2","title":"Team PGZ","type":"Freelance","link":"http:\/\/teampgz.com\/","description":"Website made while freelancing. The website presents a popular virtual racing team called Team PGZ.","image":"\/pgz.jpg","year":"2023"},
+{"id":"3","title":"Gotlands Vandrarhem","type":"University Project","link":"https:\/\/samuelwarduppgifter.one\/gotland\/","description":"Website made as a final project in the university course, Web Design for CMS. The website presents a fictional hostel made for the project and is based on WordPress.","image":"\/gotland.jpg","year":"2022"},
+{"id":"14","title":"Färdtjänst","type":"University Project","link":"https:\/\/samuelwarduppgifter.one\/fardtjanst\/","description":"Website made as a final project in the university course Web Usability. The website acts as a design concept for a online booking system for a fictional transportation service and makes use of Gulp for an automated workflow.","image":"\/fardtjanst.png","year":"2023"},
+{"id":"17","title":"Devpendent","type":"Final Thesis Project","link":"https:\/\/devpendent.azurewebsites.net\/","description":"Full-stack ASP.NET web application made as a place for developers to advertise themselves for freelance projects.","image":"\/devpendent.gif","year":"2024"},
+{"id":"18","title":"mpthree","type":"University Project","link":"https:\/\/slw-mpthree.netlify.app\/","description":"Web application using React, Node.js, AWS S3 and MongoDB to store .mp3 files for playback by users.","image":"\/mpthree.png","year":"2024"}
+]
+}
+,{"type":"table","name":"work","database":"slw_one_main","data":
+[
+{"id":"2","job":"Freelance","title":"Web developer","startDate":"2022-08-26","endDate":null,"description":"Since I started nearing the end of my education I have been actively doing and looking for small time freelancing to gain some experience."},
+{"id":"7","job":"Freelance","title":"Graphic designer","startDate":"2022-07-22","endDate":null,"description":"To expand and diversify my skillset I started self-learning graphic design for social media by making graphics for a few teams within the sim racing scene."},
+{"id":"10","job":"Traino AB (Internship)","title":"Full-stack developer","startDate":"2024-08-18","endDate":null,"description":"Developing a Progressive Web Application with Next.js, PHP, JSX, CSS, AWS S3, Stripe and MySQL. Worked in GitHub with merging and fetch requests within multiple branches. I also created the company's AWS S3-implementation and then carried out my own 4 day course with the team to teach them how it is used."},
+{"id":"11","job":"Team PGZ","title":"Web Developer","startDate":"2022-10-13","endDate":null,"description":"Developed a custom website from the ground up for a race team called Team PGZ to enhance the team's online presence. Created the teams identity and design style as this was their first website. The website presents the team to around 1.3-1.5k visitors a month."}
+]
+}
+]

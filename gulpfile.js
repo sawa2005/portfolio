@@ -15,7 +15,8 @@ const files = {
     sassPath: "src/scss/*.scss",
     jsPath: "src/js/*.js",
     tsPath: "src/ts/*.ts",
-    imgPath: "src/imgs/*"
+    imgPath: "src/imgs/*",
+    dataPath: "src/data/*.json"
 }
 
 // SASS-task / Konverterar SASS-kod till CSS
@@ -30,6 +31,11 @@ function sassTask() {
 function copyHTML() {
     return src(files.htmlPath)
     .pipe(dest('pub'));
+}
+
+function copyData() {
+    return src(files.dataPath)
+    .pipe(dest('pub/data'));
 }
 
 // CSS-task / Kopierar, konkatenerar och minimerar CSS-filerna
@@ -87,6 +93,7 @@ function watchTask(){
     watch(files.jsPath, jsTask);
     watch(files.cssPath, cssTask);
     watch(files.imgPath, imgTask);
+    watch(files.dataPath, copyData);
     watch(files.htmlPath, browsersyncReload);
     watch([files.sassPath, files.jsPath], browsersyncReload);
 }
@@ -94,6 +101,7 @@ function watchTask(){
 // Exporterar alla tasks
 exports.default = series(
     copyHTML,
+    copyData,
     tsTask, 
     jsTask, 
     imgTask,

@@ -17,7 +17,7 @@ function getCourses() {
     studiesEl!.innerHTML = '';
 
     // Hämta och skriv ut inlägg
-    fetch('https://samuelwarduppgifter.one/restprojekt/programs.php')
+    fetch('data/programs.json')
         .then(response => response.json())
         .then(data => {
             // Sorterar inläggen i datumsordning
@@ -33,7 +33,7 @@ function getCourses() {
             })
         })
 
-    fetch('https://samuelwarduppgifter.one/restprojekt/studies.php')
+    fetch('data/studies.json')
     .then(response => response.json())
     .then(data => {
         // Sorterar inläggen i datumsordning
@@ -54,7 +54,7 @@ function getCourses() {
 function getJobs() {
     workEl!.innerHTML = '';
 
-    fetch('https://samuelwarduppgifter.one/restprojekt/work.php')
+    fetch('data/work.json')
         .then(response => response.json())
         .then(data => {
             data.sort(sortByDate);
@@ -76,7 +76,7 @@ function getJobs() {
 function getWebsites() {
     websitesEl!.innerHTML = '';
 
-    fetch('https://samuelwarduppgifter.one/restprojekt/websites.php')
+    fetch('data/websites.json')
         .then(response => response.json())
         .then(data => {
             data.sort(sortByYear);

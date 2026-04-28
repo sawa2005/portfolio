@@ -1,0 +1,17 @@
+[
+  {"id": "1", "name": "Web Development I", "startDate": "2020-08-31", "endDate": "2020-11-01", "program": "1"},
+  {"id": "2", "name": "Introduction to Programming in JavaScript", "startDate": "2020-08-31", "endDate": "2020-11-01", "program": "1"},
+  {"id": "3", "name": "Typography and Layout for Internet Publishing", "startDate": "2020-11-02", "endDate": "2021-01-17", "program": "1"},
+  {"id": "4", "name": "Digital Imaging for the Web", "startDate": "2020-11-02", "endDate": "2021-01-17", "program": "1"},
+  {"id": "5", "name": "Web Development II", "startDate": "2021-01-18", "endDate": "2021-03-21", "program": "1"},
+  {"id": "6", "name": "Database Systems", "startDate": "2021-01-18", "endDate": "2021-03-21", "program": "1"},
+  {"id": "11", "name": "Programming in C#.NET", "startDate": "2021-11-01", "endDate": "2022-01-16", "program": "1"},
+  {"id": "12", "name": "Business Models", "startDate": "2022-01-17", "endDate": "2022-03-20", "program": "1"},
+  {"id": "20", "name": "Web Usability", "startDate": "2022-10-26", "endDate": "2023-01-15", "program": "1"},
+  {"id": "21", "name": "Web Design for CMS", "startDate": "2022-03-21", "endDate": "2022-06-05", "program": "1"},
+  {"id": "22", "name": "Web Development with .NET", "startDate": "2023-01-16", "endDate": "2023-03-19", "program": "1"},
+  {"id": "24", "name": "Web Development III", "startDate": "2021-08-30", "endDate": "2023-03-21", "program": "1"},
+  {"id": "25", "name": "Project Management", "startDate": "2021-08-30", "endDate": "2023-10-29", "program": "1"},
+  {"id": "26", "name": "Web Development with JavaScript", "startDate": "2021-11-02", "endDate": "2024-04-04", "program": "1"},
+  {"id": "27", "name": "Individual Assignment", "startDate": "2023-03-20", "endDate": "2024-06-24", "program": "1"}
+]
